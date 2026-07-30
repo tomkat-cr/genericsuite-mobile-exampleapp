@@ -21,4 +21,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ## [1.0.0+1] - 2026-07-15
 
 ### Added
-- Moved from `genericsuite-mobile` to `genericsuite-mobile-exampleapp` [GS-261].
+- Moved from `genericsuite-mobile` to `genericsuite-mobile-exampleapp`.
+
+
+## [0.0.0+1] - 2026-02-05
+
+### Added
+- Initial development.
