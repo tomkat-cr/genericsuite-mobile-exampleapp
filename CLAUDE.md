@@ -18,20 +18,6 @@ flutter_project_template/   # the Flutter app (package name: gsexampleapp)
 
 This is package `genericsuite-mobile-exampleapp` inside the larger `genericsuite` superproject (see `../../CLAUDE.md` for monorepo-wide context, packages, and cross-package architecture). It demonstrates/exercises the `genericsuite` Flutter library from the sibling package `genericsuite-mobile`.
 
-## Critical Dependency: sibling package via relative path
-
-`pubspec.yaml` pulls the `genericsuite` package as a **git dependency pointing at a relative local path**:
-
-```yaml
-genericsuite:
-  git:
-    url: ../../genericsuite-mobile
-    ref: develop
-    path: genericsuite_flutter
-```
-
-This only resolves correctly when this repo is checked out as a sibling of `genericsuite-mobile` inside the `genericsuite` superproject's `packages/` directory (i.e. `packages/genericsuite-mobile-exampleapp` and `packages/genericsuite-mobile` both present). Running `flutter pub get` outside that layout will fail to resolve the dependency. See `packages/genericsuite-mobile/CLAUDE.md` for the library's architecture (JSON-driven CRUD, `AppCallablesSuper`, `CreateGsApp`, GetIt DI, auth flow) — that's where most of the actual behavior this app exercises is implemented.
-
 ## Commands
 
 All commands below run from `flutter_project_template/`.

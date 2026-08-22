@@ -39,7 +39,7 @@ genericsuite-mobile-exampleapp/
 ```yaml
 genericsuite:
   git:
-    url: ../../genericsuite-mobile
+    url: https://github.com/tomkat-cr/genericsuite-mobile.git
     ref: develop
     path: genericsuite_flutter
 ```
