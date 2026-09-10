@@ -97,40 +97,56 @@ make clean             # pub cache clean + rm build/ + rm .dart_tool + rm logs/ 
 make fresh             # clean + install
 ```
 
-## Starting a New Project from This Template
+## Development
 
-1. Clone this repository.
-2. Make a copy of all your code, especially the `ios` directory. **PLEASE DON'T SKIP THIS STEP**, otherwise if you get the error mentioned in the Troubleshooting section, you won't be able to run the app in an iOS device simulator.
-3. Copy the `flutter_project_template` directory to your desired location, e.g. `~/Documents/FlutterProjects/MyApp`.
-4. Open the `MyApp` directory in your preferred IDE, e.g. Visual Studio Code, Cursor, Antigravity, Android Studio, etc.
-5. Search and replace globally the following strings (case sensitive, complete words):
+### Starting a New Project from This Template
+
+* Clone this repository.
+
+* Make a copy of all your code, especially the `ios` directory. **PLEASE DON'T SKIP THIS STEP**, otherwise if you get the error mentioned in the Troubleshooting section, you won't be able to run the app in an iOS device simulator.
+
+* Copy the `flutter_project_template` directory to your desired location, e.g. `~/Documents/FlutterProjects/MyApp`.
+
+* Open the `MyApp` directory in your preferred IDE, e.g. Visual Studio Code, Cursor, Antigravity, Android Studio, etc.
+
+*  Search and replace globally the following strings (case sensitive, complete words):
     - `com.genericsuite.gsexampleapp` with your app package domain and app name (use short name for the app name, e.g. `com.mydomain.myapp`)
     - `com.genericsuite` with your app package domain (e.g. `com.mydomain`)
     - `gsexampleapp` with your app name in all lowercase (e.g. `myapp`)
     - `GS ExampleApp` with your app short name (capitalized, short because it's the name in the SmartPhone launch screen, e.g. `My App Short Name`)
     - `GenericSuite Mobile Example App` with your app long name (capitalized, e.g. `My App Long Name`)
     - `genericsuite-mobile-example-app` with your app name (capitalized, e.g. `my-app`)
-6. Rename the following files:
+
+* Rename the following files:
     - `gsexampleapp.iml` to `myapp.iml`
     - `android/gsexampleapp_android.iml` to `android/myapp_android.iml`
     - `android/app/src/main/kotlin/com/genericsuite/gsexampleapp` to `android/app/src/main/kotlin/com/mydomain/myapp`
-7. Install the dependencies:
+
+* Install the dependencies:
     ```bash
     flutter pub get
     ```
-8. Replace the following directory/files with your own versions:
+
+* Replace the following directory/files with your own versions:
     - `assets/images/app_logo_circle.png`
-9. Generate app icons (to let the app have a custom icon with its logo):
+
+* Generate app icons (to let the app have a custom icon with its logo):
     ```bash
     make generate_icons
     ```
-10. If you don't have a keystore, generate one using the `make generate_keystore` command:
+
+### Publishing to Google Play Store
+
+#### Keystore
+
+* If you don't have a keystore, generate one using the `make generate_keystore` command:
     ```bash
     make generate_keystore
     ```
     Notes:
     - It will ask you for the keystore password, key password and key alias. Write them down in a safe place, you will need them for the next step and for signing your app.
-11. Create a file named `android/key.properties` that contains a reference to your keystore:
+
+* Create a file named `android/key.properties` that contains a reference to your keystore:
     ```properties
     storePassword=<password-from-previous-step>
     keyPassword=<password-from-previous-step>
@@ -138,17 +154,67 @@ make fresh             # clean + install
     storeFile=<keystore-file-location>
     ```
     Notes:
+
     - Don't include the angle brackets (`< >`). They indicate that the text serves as a placeholder for your values.
-    - The `storeFile` might be located at `/Users/<user name>/upload-keystore.jks` on macOS or `C:\\Users\\<user name>\\upload-keystore.jks` on Windows.
+
+    - The `storeFile` might be located at the following paths (replace `<user name>` with your actual username):
+
+    1. MacOS: `/Users/<user name>/upload-keystore.jks`
+    2. Windows: `C:\\Users\\<user name>\\upload-keystore.jks`
+
     - The Windows path to `keystore.jks` must be specified with double backslashes: `\\`.
+
+    - The MacOS path to `keystore.jks` must be specified with a single forward slash: `/`.
+
     - Check [Build and release an Android app](https://docs.flutter.dev/deployment/android) for more information.
 
     Warning:
     - Keep the `key.properties` file private; don't check it into public source control.
-12. Build the bundle (it's a Google Play Store requirement):
+
+#### Setting the version number
+
+* The version number is the one in the `pubspec.yaml` file. If you want to change it, you can do it by editing the `version` field. For example:
+    ```yaml
+    version: 1.0.0+1
+    ```
+
+
+#### Building the bundle
+
+* Build the bundle (it's a Google Play Store requirement):
     ```bash
     make build_bundle
     ```
+
+#### Logging in to the Google Play Console
+
+* Go to the Google Play Console: [https://play.google.com/console](https://play.google.com/console)
+
+* Login with your Google Account and choose developer account
+
+* If the app is not listed, you need to add it clicking on "Create app"
+
+* Click on the app name to open the app dashboard
+
+#### Creating a new release for internal testing
+
+* Click on "Test and release" > "Testing" > "Internal testing"
+
+* Click on "Create New Release"
+
+* Upload the bundle file (created by the `make build_bundle` command and available in the `build/app/outputs/bundle/release/` directory as `app-release.aab`)
+
+* Follow the instructions to create the release
+
+* In the "Internal testing" section, you will see the release you just created
+
+* Click on "Edit Release"
+
+* Scroll down. In the "Release details" section, enter the "Release name" with the version number and the "Release notes" with the changelog entries for the version. The version number is the one in the `pubspec.yaml` file. The changelog entries are the ones in the `CHANGELOG.md` file.
+
+* Click on "Next"
+
+* Click on "Save and Publish"
 
 ## Troubleshooting
 

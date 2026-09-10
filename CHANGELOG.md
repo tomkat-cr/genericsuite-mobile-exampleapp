@@ -18,13 +18,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
+## [Unreleased] - YYYY-MM-DD
+
+### Added
+- Instructions the README.md file to create the internal testing release in the Play Store [GS-261].
+
+
 ## [1.0.0+1] - 2026-08-30
 
 ### Added
-- Moved from `genericsuite-mobile` to `genericsuite-mobile-exampleapp`.
+- Moved from `genericsuite-mobile` to `genericsuite-mobile-exampleapp` [GS-261].
 
 
 ## [0.0.0+1] - 2026-02-05
 
 ### Added
-- Initial development.
+- Initial development [GS-261].
